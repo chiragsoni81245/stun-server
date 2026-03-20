@@ -1,0 +1,11 @@
+FROM golang:1.22-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN go build -o stun-server ./cmd/server
+
+EXPOSE 3478/udp 3479/udp 9090
+
+CMD ["./stun-server"]
