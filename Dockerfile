@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o stun-server ./cmd/server
+RUN mkdir bin && go build -o bin/stun-server ./cmd/server/main.go
 
 EXPOSE 3478/udp 3479/udp 9090
 
-CMD ["./stun-server"]
+CMD ["./bin/stun-server"]
