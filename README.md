@@ -44,10 +44,15 @@ stun-server/
 
 ### Installation
 
+1. Use pre build binary from release
+https://github.com/chiragsoni81245/stun-server/releases
+
+2. Build from source
 ```id="93oexn"
-git clone https://github.com/yourusername/stun-server.git
+git clone https://github.com/chiragsoni81245/stun-server.git
 cd stun-server
 go mod tidy
+go build -o bin/stun-server ./cmd/server/main.go
 ```
 
 ---
@@ -55,7 +60,7 @@ go mod tidy
 ### Run Locally
 
 ```id="faz7js"
-go run ./cmd/server
+./stun-server ./cmd/server
 ```
 
 ---
@@ -63,23 +68,17 @@ go run ./cmd/server
 ### Run with Custom Ports
 
 ```id="drs9pe"
-go run ./cmd/server --addrs=":3478,:3479"
+./stun-server --addrs=":3478,:3479"
 ```
 
 ---
 
 ## Docker
 
-### Build
-
-```id="fm3sjy"
-docker build -t stun-server .
-```
-
 ### Run
 
 ```id="ywe3wm"
-docker run -p 3478:3478/udp -p 3479:3479/udp -p 9090:9090 stun-server
+docker run -p 3478:3478/udp -p 3479:3479/udp -p 9090:9090 chiragsoni812/stun-server
 ```
 
 ---
