@@ -35,6 +35,15 @@ jobs:
         with:
           images: chiragsoni812/stun-server
 
+      - name: Set tag
+        id: vars
+        run: |
+          if [ -z "${{ github.event.inputs.image_tag }}" ]; then
+            echo "TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+          else
+            echo "TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_OUTPUT
+          fi
+
       # Build and push Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -43,4 +52,4 @@ jobs:
           push: true
           tags: |
             chiragsoni812/stun-server:latest
-            chiragsoni812/stun-server:${{ github.event.inputs.image_tag }}
+            chiragsoni812/stun-server:${{ steps.vars.outputs.TAG }}
